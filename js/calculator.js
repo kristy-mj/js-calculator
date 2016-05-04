@@ -10,12 +10,10 @@ $(document).ready(function(){
   }
 });
 
-
-var num = '0';
+var num = '';
 var newNum = '';
 var operator = '';
 var displaySum = $('#display');
-displaySum.text(num);
 
 $('.buttons button').on('click', function(event) {
   $('#display').append(event.currentTarget.innerHTML);
