@@ -1,56 +1,66 @@
-var oldValue = 0;
-var newValue = 0;
-var operation = 0;
-var maxLength = 9;
+$(document).ready(function(){
+  var testNumLength = function(number) {
+        if (num.length > 9) {
+            displaySum.text(num.substr(num.length-9,9));
+            if (num.length > 15) {
+                num = "";
+                displaySum.text("error");
+            }
+        } 
+    
+  }
+});
 
-// var number = document.buttons.number.value;
-// var operator = document.getElementsByClassName('operator').value;
+
+var num = "";
+var newNum = "";
+var operator = "";
+var displaySum = $('#display');
 
 
 $('.buttons button').on('click', function(event) {
   $('#display').append(event.currentTarget.innerHTML);
-});
-
-
-// function addNum(number) {
-//   alert ("Hi");
-//   $('#display').
-//   document.getElementById('display')
-
-//   .innerHTML = button;
-// }
-
-
-/*$('.button').on('click', function(event) {
-  console.log (document.getElementsByClassName("button").innerHTML);
-}
-
-$('#display').append(number);
-
-
-
-
-/*function calculate(num, operator) {
-  for (var i = 0; i < 9; i++){
-
-    if (operator === '/') {
-      numResult = numberA / numberB;
-    }
-    else if (operator === 'x') {
-      numResult = numberA * numberB;
+  
+  if ($(this).attr("class") === 'clear') {
+    num = "";
+    displaySum.text(" ");
+  }
+  else if ($(this).attr("class") === "clearall") {
+      displaySum.text(" ");
+      newNum = "";
+  }
+  else if ($(this).attr("class") === 'number') {
+    num += $(this).text();
+    displaySum.text(num);
+    // testNumLength(num);
+  }
+  else if ($(this).attr("class") === 'operator') {
+    operator = $(this).text();
+    displaySum.text(operator);
+    newNum = num;
+    num = "";
+  }
+  else if ($(this).attr("class") === 'equals') {
+    
+    if (operator === '+') {
+      num = (parseInt(newNum, 10) + parseInt(num, 10)).toString(10);
     }
     else if (operator === '-') {
-      numResult = numberA - numberB;
+      num = (parseInt(newNum, 10) - parseInt(num, 10)).toString(10);
     }
-    else if (operator == '+') {
-      numResult = numberA + numberB;
+    else if (operator === 'x') {
+      num = (parseInt(newNum, 10) * parseInt(num, 10)).toString(10);
     }
-    else if (operator == '%') {
-      numResult = numberA / 100;
+    else if (operator === '/') {
+      num = (parseInt(newNum, 10) / parseInt(num, 10)).toString(10);
     }
-    else if (operator == 'AC') {
-      numResult = ' ';
-    }
+    // operator = '';
+    displaySum.text(num);
+    number = '';
+    newNum = '';
+
   }
-};
-*/
+
+});
+
+    
